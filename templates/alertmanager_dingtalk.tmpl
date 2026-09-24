@@ -1,0 +1,14 @@
+{{range $k, $v := .Alerts}}
+{{if eq $v.Status "resolved"}}
+##### 恢复时间：{{GetCSTtime $v.EndsAt}}
+##### 告警主机：{{$v.Labels.instance}}
+##### 恢复描述：{{$v.Annotations.recovery_description}}
+{{else}}
+##### 触发时间：{{GetCSTtime $v.StartsAt}}
+##### 告警主机：{{$v.Labels.instance}}
+##### 告警摘要：{{$v.Annotations.summary}}
+##### 告警描述：{{$v.Annotations.description}}
+{{end}}
+
+---
+{{end}}

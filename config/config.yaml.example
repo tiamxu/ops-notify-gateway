@@ -1,0 +1,30 @@
+server:
+  address: ":8801"
+  read_timeout_seconds: 10
+  write_timeout_seconds: 10
+
+auth:
+  enabled: true
+  token: "${OPS_NOTIFY_TOKEN}"
+
+channels:
+  jenkins-test:
+    platform: "feishu"
+    webhook: "${FEISHU_JENKINS_TEST_WEBHOOK}"
+    secret: "${FEISHU_JENKINS_TEST_SECRET}"
+    template: "jenkins_feishu"
+    at: []
+
+  jenkins-prod:
+    platform: "dingtalk"
+    webhook: "${DINGTALK_JENKINS_PROD_WEBHOOK}"
+    secret: "${DINGTALK_JENKINS_PROD_SECRET}"
+    template: "jenkins_dingtalk"
+    at: []
+
+  alert-prod:
+    platform: "dingtalk"
+    webhook: "${DINGTALK_ALERT_PROD_WEBHOOK}"
+    secret: "${DINGTALK_ALERT_PROD_SECRET}"
+    template: "alertmanager_dingtalk"
+    at: []

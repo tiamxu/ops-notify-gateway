@@ -1,0 +1,13 @@
+**Jenkins 构建通知**
+
+**结果**：{{.Status}}
+**Job**：{{.JobName}}
+**构建号**：#{{.BuildNumber}}
+**分支**：{{.Branch}}
+**环境**：{{.DeployEnv}}
+**服务**：{{range $i, $v := .Services}}{{if $i}}, {{end}}{{$v}}{{end}}
+**产物类型**：{{.PackageType}}
+**是否部署**：{{.Deploy}}
+**部署方式**：{{.DeployType}}
+**触发人**：{{.TriggerUser}}
+[查看构建]({{.BuildURL}})
