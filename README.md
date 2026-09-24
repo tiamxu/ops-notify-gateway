@@ -10,20 +10,16 @@
 - 钉钉机器人通知，支持加签
 - 飞书机器人通知，第一版发送卡片消息
 - Token 鉴权
-- YAML 配置和环境变量占位
+- YAML 配置
 
 第一版不使用数据库，不提供管理后台，不实现异步队列、失败重试和通知记录查询。
 
 ## 启动
 
-复制配置示例并按环境注入变量：
+复制配置示例并按实际环境修改配置文件：
 
 ```bash
 cp config/config.yaml.example config/config.yaml
-export OPS_NOTIFY_TOKEN='change-me'
-export FEISHU_JENKINS_TEST_WEBHOOK='https://open.feishu.cn/open-apis/bot/v2/hook/example'
-export DINGTALK_JENKINS_PROD_WEBHOOK='https://oapi.dingtalk.com/robot/send?access_token=example'
-export DINGTALK_JENKINS_PROD_SECRET='SECexample'
 ```
 
 运行：
@@ -50,8 +46,8 @@ POST /api/v1/notifications/generic
 鉴权 Header 二选一：
 
 ```text
-Authorization: Bearer <OPS_NOTIFY_TOKEN>
-X-Webhook-Token: <OPS_NOTIFY_TOKEN>
+Authorization: Bearer <token>
+X-Webhook-Token: <token>
 ```
 
 详细说明见 `doc/接口文档.md`、`doc/Jenkins接入说明.md`、`doc/Alertmanager接入说明.md`。
@@ -59,7 +55,7 @@ X-Webhook-Token: <OPS_NOTIFY_TOKEN>
 ## 验证
 
 ```bash
-gofmt -w cmd api config middleware pkg routes service types
+gofmt -w main.go api config middleware pkg routes service types
 go test ./...
 go vet ./...
 ```

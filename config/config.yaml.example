@@ -5,26 +5,26 @@ server:
 
 auth:
   enabled: true
-  token: "${OPS_NOTIFY_TOKEN}"
+  token: "change-me"
 
 channels:
   jenkins-test:
     platform: "feishu"
-    webhook: "${FEISHU_JENKINS_TEST_WEBHOOK}"
-    secret: "${FEISHU_JENKINS_TEST_SECRET}"
+    webhook: "https://open.feishu.cn/open-apis/bot/v2/hook/example"
+    secret: "SECexample"
     template: "jenkins_feishu"
     at: []
 
   jenkins-prod:
     platform: "dingtalk"
-    webhook: "${DINGTALK_JENKINS_PROD_WEBHOOK}"
-    secret: "${DINGTALK_JENKINS_PROD_SECRET}"
+    webhook: "https://oapi.dingtalk.com/robot/send?access_token=example"
+    secret: "SECexample"
     template: "jenkins_dingtalk"
     at: []
 
   alert-prod:
     platform: "dingtalk"
-    webhook: "${DINGTALK_ALERT_PROD_WEBHOOK}"
-    secret: "${DINGTALK_ALERT_PROD_SECRET}"
+    webhook: "https://oapi.dingtalk.com/robot/send?access_token=example"
+    secret: "SECexample"
     template: "alertmanager_dingtalk"
     at: []

@@ -51,7 +51,7 @@
 - 项目按 `api/service/repo/model/types/routes/middleware/pkg/sql` 分层规范执行。
 - 第一版不使用数据库；未确认前不创建 `repo/`、`model/`、`sql/`。
 - `pkg` 只放公共能力，不放 Jenkins、Alertmanager、channel 路由或通知编排业务逻辑。
-- 配置通过 `config/` 和环境变量管理，禁止提交真实私密配置。
+- 配置通过 `config/` 文件管理，禁止提交真实私密配置。
 - 新增依赖必须先说明用途、替代方案和风险，并等待确认。
 
 ## 五、文档同步

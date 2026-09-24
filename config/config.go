@@ -19,9 +19,8 @@ func Load(path string) (types.Config, error) {
 	if err != nil {
 		return types.Config{}, err
 	}
-	expanded := os.ExpandEnv(string(data))
 	var cfg types.Config
-	if err := yaml.Unmarshal([]byte(expanded), &cfg); err != nil {
+	if err := yaml.Unmarshal(data, &cfg); err != nil {
 		return types.Config{}, err
 	}
 	applyDefaults(&cfg)
