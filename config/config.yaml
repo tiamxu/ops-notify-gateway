@@ -1,0 +1,57 @@
+server:
+  address: ":8801"
+  read_timeout_seconds: 10
+  write_timeout_seconds: 10
+
+auth:
+  enabled: true
+  token: "change-me"
+
+channel_source:
+  mode: platform # 支持file, platform，重启生效
+  platform:
+    url: "http://127.0.0.1:8800/api/v1/internal/notification-channels"
+    token: "73e85c502b1035b54011a70a4fbd96af2d8c0e0d362b5c0e53e0d24150319dd3"
+    recovery_file: "./config/channels.snapshot.yaml"
+    sync_interval_seconds: 30
+    timeout_seconds: 5
+
+channels:
+  jenkins-test:
+    enabled: true
+    platform: "feishu"
+    webhook: "https://open.feishu.cn/open-apis/bot/v2/hook/d2c259e5-87f4-4fa8-9587-4f102a3ccc3f"
+    secret: ""
+    template: "jenkins_feishu"
+    at: []
+
+  jenkins-prod:
+    enabled: true
+    platform: "dingtalk"
+    webhook: "https://oapi.dingtalk.com/robot/send?access_token=9ef3af0bc7052966a73c6642eed0e7c90e35a4dd6860887dd9029c65255d5abd"
+    secret: "SEC0488bbb01d1bdb222619fce742061687a1e591d5a914923781495bde1128c8bf"
+    template: "jenkins_dingtalk"
+    at: []
+
+  alert-prod:
+    enabled: true
+    platform: "dingtalk"
+    webhook: "https://oapi.dingtalk.com/robot/send?access_token=9ef3af0bc7052966a73c6642eed0e7c90e35a4dd6860887dd9029c65255d5abd"
+    secret: "SEC0488bbb01d1bdb222619fce742061687a1e591d5a914923781495bde1128c8bf"
+    template: "alertmanager_dingtalk"
+    at: []
+
+  alert-test:
+    enabled: true
+    platform: "feishu"
+    webhook: "https://open.feishu.cn/open-apis/bot/v2/hook/d2c259e5-87f4-4fa8-9587-4f102a3ccc3f"
+    secret: ""
+    template: "alertmanager_feishu"
+    at: []
+  ops-test:
+    enabled: true
+    platform: "feishu"
+    webhook: "https://open.feishu.cn/open-apis/bot/v2/hook/d2c259e5-87f4-4fa8-9587-4f102a3ccc3f"
+    secret: ""
+    template: "generic_feishu"
+    at: []
