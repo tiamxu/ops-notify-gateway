@@ -1,0 +1,19 @@
+### <font color="{{.StatusColor}}">{{if .GroupLabels.alertname}}{{.GroupLabels.alertname}}{{else}}Alertmanager 告警通知{{end}} [{{.LevelText}}] [{{.StatusText}}]</font>
+
+{{range $k, $v := .Alerts}}
+{{if eq $v.Status "resolved"}}
+##### <font color="{{$.StatusColor}}">恢复时间</font>：{{GetCSTtime $v.EndsAt}}
+{{if $v.Labels.instance}}##### <font color="{{$.StatusColor}}">告警主机</font>：{{$v.Labels.instance}}
+{{end}}{{if $v.Annotations.recovery_description}}##### <font color="{{$.StatusColor}}">恢复描述</font>：{{$v.Annotations.recovery_description}}
+{{end}}{{else}}
+##### <font color="{{$.StatusColor}}">触发时间</font>：{{GetCSTtime $v.StartsAt}}
+{{if $v.Labels.instance}}##### <font color="{{$.StatusColor}}">告警主机</font>：{{$v.Labels.instance}}
+{{end}}{{if $v.Annotations.summary}}##### <font color="{{$.StatusColor}}">告警摘要</font>：{{$v.Annotations.summary}}
+{{end}}{{if $v.Annotations.description}}##### <font color="{{$.StatusColor}}">告警描述</font>：{{$v.Annotations.description}}
+{{end}}{{end}}
+{{if $v.GeneratorURL}}##### <font color="{{$.StatusColor}}">详情链接</font>：[查看详情]({{$v.GeneratorURL}})
+{{end}}
+---
+{{end}}{{if .ExternalURL}}
+##### <font color="{{.StatusColor}}">Alertmanager</font>：[查看控制台]({{.ExternalURL}})
+{{end}}

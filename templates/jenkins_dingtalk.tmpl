@@ -1,0 +1,13 @@
+### Jenkins 构建通知
+
+- **结果**：{{.Status}}
+{{if .DeployEnv}}- **环境**：{{.DeployEnv}}
+{{end}}{{if .Services}}- **服务**：{{range $i, $v := .Services}}{{if $i}}, {{end}}{{$v}}{{end}}
+{{end}}{{if .Branch}}- **分支**：{{.Branch}}
+{{end}}{{if .Commit}}- **提交**：{{.Commit}}
+{{end}}{{if .ImageRefs}}- **镜像**：{{range $i, $v := .ImageRefs}}{{if $i}}, {{end}}{{$v}}{{end}}
+{{else if .PackageType}}- **产物**：{{.PackageType}}
+{{end}}{{if .DeployText}}- **部署**：{{.DeployText}}{{if and (eq .DeployText "是") .DeployType (ne .DeployType "none")}}（{{.DeployType}}）{{end}}
+{{end}}- **Job**：{{.JobName}} #{{.BuildNumber}}
+{{if .TriggerUser}}- **触发人**：{{.TriggerUser}}
+{{end}}- **链接**：[查看构建]({{.BuildURL}})

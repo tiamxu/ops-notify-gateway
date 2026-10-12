@@ -1,0 +1,12 @@
+version: 1
+source: http://127.0.0.1:8800/api/v1/internal/notification-channels
+synced_at: 2026-10-11T14:35:40.288244Z
+snapshot:
+    version: 1
+    channels:
+        - code: alert-feishu-test
+          platform: feishu
+          webhook: https://open.feishu.cn/open-apis/bot/v2/hook/d2c259e5-87f4-4fa8-9587-4f102a3ccc3f
+          secret: ""
+          at: []
+          enabled: true

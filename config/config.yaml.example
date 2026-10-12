@@ -1,0 +1,42 @@
+server:
+  address: ":8801"
+  read_timeout_seconds: 10
+  write_timeout_seconds: 10
+
+auth:
+  enabled: true
+  token: "change-me"
+
+channel_source:
+  mode: file # file 使用下方 channels；platform 从平台拉取，修改后重启
+  platform:
+    url: "https://ops.example.com/api/v1/internal/notification-channels"
+    token: "replace-with-platform-read-token"
+    recovery_file: "/var/lib/ops-notify-gateway/channels.snapshot.yaml"
+    # sync_interval_seconds: 30
+    # timeout_seconds: 5
+
+channels:
+  jenkins-test:
+    enabled: true
+    platform: "feishu"
+    webhook: "https://open.feishu.cn/open-apis/bot/v2/hook/example"
+    secret: "SECexample"
+    template: "jenkins_feishu"
+    at: []
+
+  jenkins-prod:
+    enabled: true
+    platform: "dingtalk"
+    webhook: "https://oapi.dingtalk.com/robot/send?access_token=example"
+    secret: "SECexample"
+    template: "jenkins_dingtalk"
+    at: []
+
+  alert-prod:
+    enabled: true
+    platform: "dingtalk"
+    webhook: "https://oapi.dingtalk.com/robot/send?access_token=example"
+    secret: "SECexample"
+    template: "alertmanager_dingtalk"
+    at: []
